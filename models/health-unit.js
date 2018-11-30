@@ -5,16 +5,17 @@ const Schema = mongoose.Schema;
 // For more details: https://mongoosejs.com/docs/geojson.html
 const GeoSchema = new Schema({
     type: {
+        type: String,
+        enum: ['Point'],
         default: "Point",
-        type: String // Don't do `{ location: { type: String } }`
+        required: true
     },
     coordinates: {
-        index: "2dsphere",
         type: [Number],
         required: true
     }
 });
-// Alternatively: GeoSchema.index({ location: "2dsphere" });
+
 // create a health unit schema & model
 const healthUnitSchema = new Schema(
     {
@@ -42,9 +43,13 @@ const healthUnitSchema = new Schema(
             type: GeoSchema,
             required: true
         }
+       
         // add the adddress
     }
 );
+
+// Create index to allow $geoNear query
+healthUnitSchema.index({ location: "2dsphere" });
 
 // create health unit model
 const healthUnit = mongoose.model('healthunit', healthUnitSchema);

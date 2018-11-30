@@ -6,24 +6,33 @@ const HealthUnit = require('../models/health-unit')
 router.get('/health-units', (req, res, next) => {
   // HealthUnit.find({}).then(units => res.send(units));
   // Latest release of mongoose does not support Model.geoNear
-  HealthUnit.geoNear(
-    { 
-      type: 'Point', 
-      coordinates:[parseFloat(req.query.lng), parseFloat(req.query.lat)]
-    },
-    {
-       maxDistance: 100000,
-       spherical: true
-    }
-  ).then(units => res.status(200).json(units));
-  /*HealthUnit.find({
-      location: {
-        $geoWithin: {
-          $center: [[parseFloat(req.query.lng), parseFloat(req.query.lat)], 100000]
-        },
-      }
-  }).then(units => res.status(200).json(units))
+  /*  
+  HealthUnit
+  .find({})
+  .where('location')
+  .within({ center: [parseFloat(req.query.lng), parseFloat(req.query.lat)], radius: 1, unique: true, spherical: true }) 
+  .then(units => res.status(200).json(units))
+  .catch((err) => res.status(404).json({error: err}))
   */
+  HealthUnit.aggregate(
+    [
+      {
+        "$geoNear": {
+          "near": {
+            "type": "Point",
+            "coordinates": [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+          },
+          "distanceField": "distance",
+          "spherical": true,
+          "maxDistance": 100000
+        }
+      }
+    ],
+    function (err, results) {
+      if (results) res.status(200).json(results)
+      else res.status(404).json(err)
+    }
+  )
 });
 
 // add a new health unit to the db
