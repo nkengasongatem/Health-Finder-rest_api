@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch|Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Health Finder</title>
+</head>
+
+<body>
+    <header>
+        <h1>Health Finder</h1>
+    </header>
+    <main>
+        <h5>Find a health center in your area</h5>
+        <div class="row">
+            <form class="col" id="user-area" onsubmit="find(event)">
+                <div class="row">
+                    <div class="col">
+                        <label for="lat">Latitude</label>
+                        <input id="lat" type="text" required pattern="[-+]?[0-9]*\.?[0-9]*" class="validate browser-default">
+                    </div>
+                    <div class="col">
+                        <label for="long">Longitude</label>
+                        <input id="long" type="text" required pattern="[-+]?[0-9]*\.?[0-9]*" class="validate browser-default">
+                    </div>
+                    <div class="col">
+                        <button class="btn waves-effect waves-light" id="find-button" type="submit">Find
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">           
+             <!-- Display health units -->
+            <ul id="result-list"></ul>
+        </div>
+    </main>
+    <footer>
+        &copy;Nkengasong Atem
+    </footer>
+
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    
+    <script src="js/main.js"></script>
+</body>
+
+</html>

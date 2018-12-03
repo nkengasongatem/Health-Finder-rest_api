@@ -1,0 +1,77 @@
+body{
+    font-family: Raleway;
+    color: #555;
+    background: #253862;
+    margin: 10px 30px;
+}
+main{
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 10px 20px;
+    background: #fdfdfd;
+    border-radius: 4px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+}
+
+#user-area {
+    margin-top:15px; 
+    margin-left: 18px;
+}
+input[type="text"]{
+    display: block;
+    width: 275px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+label{
+    color: grey;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+header h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 48px;
+}
+main h5{
+    text-align: center;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+li{
+    padding: 15px 0;
+    background: #eee;
+    list-style-type: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+span.title{
+    font-size: 1.2rem!important;
+}
+i.true{
+    background: green!important;
+}
+i.false{
+    background: #ff5252!important;
+}
+button{
+    cursor: pointer;
+    margin-top: 33px;
+    font-size: 1.2rem!important;
+    text-transform: initial!important;
+}
+button.false{display: none;}
+
+footer {
+    color: #fff;
+    text-align: center;
+    font-size: 16px;  
+    font-size: 'Ubunut', 'Chakra-Petch';
+}

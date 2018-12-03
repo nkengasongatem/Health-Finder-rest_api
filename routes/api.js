@@ -4,16 +4,8 @@ const HealthUnit = require('../models/health-unit')
 
 // get a list of health units from the db using URL parameters (longitude & latitude)
 router.get('/health-units', (req, res, next) => {
+  // https://stackoverflow.com/questions/32199658/create-find-geolocation-in-mongoose
   // HealthUnit.find({}).then(units => res.send(units));
-  // Latest release of mongoose does not support Model.geoNear
-  /*  
-  HealthUnit
-  .find({})
-  .where('location')
-  .within({ center: [parseFloat(req.query.lng), parseFloat(req.query.lat)], radius: 1, unique: true, spherical: true }) 
-  .then(units => res.status(200).json(units))
-  .catch((err) => res.status(404).json({error: err}))
-  */
   HealthUnit.aggregate(
     [
       {

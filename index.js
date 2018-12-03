@@ -9,7 +9,8 @@ const app = express();
 mongoose.connect('mongodb://localhost/healthfinder');
 mongoose.Promise = global.Promise;
 
-app.use(express.static('public'));
+// frontend
+app.use(express.static('front-end'));
 
 app.use(bodyParser.json());
 
