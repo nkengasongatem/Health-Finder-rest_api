@@ -5,6 +5,12 @@ function find (event) {
   let longitude = document.getElementById('long').value
   const fetchURL = `/api/health-units?lng=${longitude}&lat=${latitude}`
 
+  // Remove existing results from the dom before new search
+  let list = document.getElementById('result-list').hasChildNodes(); 
+  if (list) {
+    document.getElementById('result-list').innerHTML = "";
+  } 
+
   // TEST: http://127.0.0.1:4000/api/health-units?lng=-53.7&lat=37.055
   fetch(fetchURL)
     .then(data => {
@@ -13,11 +19,10 @@ function find (event) {
     .then(json => {
       console.log(json);
       if (json === undefined || json.length == 0) {
-        swal("No Health unit was found!");
+        swal("No Health units were found in this area!");
         return false;
       }
       json.forEach(unit => {        
-        // remove existing results
         
         let ul = document.getElementById('result-list');
         ul.setAttribute("class", "collection");
@@ -27,7 +32,7 @@ function find (event) {
         li.innerHTML =  
         `<i class="material-icons circle ${unit.available}"></i>
             <span class="title">${unit.name}</span>
-            <p style="font-size: 0.9rem;">${parseInt(unit.distance)} m away<br>
+            <p style="font-size: 0.9rem;">${parseInt(unit.distance/1000)} km away<br>
             ${unit.desc}
             </p>
         <p class="secondary-content">${unit.category}<br>

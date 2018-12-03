@@ -16,7 +16,7 @@ router.get('/health-units', (req, res, next) => {
           },
           "distanceField": "distance",
           "spherical": true,
-          "maxDistance": 100000
+          "maxDistance": 1000000
         }
       }
     ],
