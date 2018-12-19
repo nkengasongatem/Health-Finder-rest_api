@@ -17,7 +17,7 @@ function find (event) {
       return data.json()
     })
     .then(json => {
-      console.log(json);
+      // console.log(json);
       if (json === undefined || json.length == 0) {
         swal("No Health units were found in this area!");
         return false;
